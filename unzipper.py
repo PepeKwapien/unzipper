@@ -25,7 +25,9 @@ def change_filename_into_directory(zip_file_path):
 def unzip_files_from_list(zip_file_list):
     for zip_file_path in zip_file_list:
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-            zip_ref.extractall(change_filename_into_directory(zip_file_path))
+            zip_to = change_filename_into_directory(zip_file_path)
+            zip_ref.extractall(zip_to)
+            print(zip_to.split("\\")[-1])
 
 
 def delete_zip_files_from_list(zip_file_list):
@@ -34,6 +36,6 @@ def delete_zip_files_from_list(zip_file_list):
 
 
 if __name__ == '__main__':
-    zip_file_list = find_all_zips_in_directory(ask_for_directory())
-    unzip_files_from_list(zip_file_list)
-    delete_zip_files_from_list(zip_file_list)
+    file_list = find_all_zips_in_directory(ask_for_directory())
+    unzip_files_from_list(file_list)
+    delete_zip_files_from_list(file_list)
